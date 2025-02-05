@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>XAPK to ZIP Converter</title>
+</head>
+<body>
+    <h1>XAPK to ZIP Converter</h1>
+    <input type="file" id="fileInput" accept=".xapk">
+    <button onclick="convertXapkToZip()">Convert to ZIP</button>
+    <script>
+        function convertXapkToZip() {
+            var fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length == 0) {
+                alert('Please select a file');
+                return;
+            }
+            var file = fileInput.files[0];
+            var newFileName = file.name.replace('.xapk', '.zip');
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([file], { type: 'application/zip' }));
+            a.download = newFileName;
+            a.click();
+        }
+    </script>
+</body>
+</html>
